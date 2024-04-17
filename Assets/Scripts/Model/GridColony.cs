@@ -1,16 +1,19 @@
 using System.Collections.Generic;
+using UnityEngine.UIElements.Experimental;
 
-public class Grid
+public class GridColony
 {
     private bool[,] walls;
     private bool[,] ants;
     private int[,] seedQuantities;
     private int width, height;
+    private int maxQuantityOnBlock;
 
-    public Grid(int width, int height)
+    public GridColony(int width, int height, int MaxQuantitySeedPerBlock)
     {
         this.width = width;
         this.height = height;
+        this.maxQuantityOnBlock = MaxQuantitySeedPerBlock;
 
         ants = new bool[width + 2, height + 2];
         walls = new bool[width + 2, height + 2];
@@ -37,11 +40,11 @@ public class Grid
         return height;
     }
 
-
     public bool GetWall(int x, int y)
     {
         return walls[x, y];
     }
+
     public void SetWall(int x, int y, bool isWallPresent)
     {
         if (x > 0 && x < width + 1 && y > 0 && y < height + 1 && x != 0 && y != 0)
@@ -58,13 +61,12 @@ public class Grid
         ants[x, y] = isAntPresent;
     }
 
-
     public int GetSeedQuantity(int x, int y)
     {
         return seedQuantities[x, y];
     }
 
-    public void SetSeedQuantity(int x, int y, int quantity, int maxQuantityOnBlock)
+    public void SetSeedQuantity(int x, int y, int quantity)
     {
         if (quantity < 0 || quantity > maxQuantityOnBlock)
             return;
@@ -107,5 +109,26 @@ public class Grid
         }
 
         return totalWalls;
+    }
+
+    public int CountSeedsNeighbors(int x, int y)
+    {
+        int nb = 0;
+        for (int vx = -1; vx < 2; vx++)
+        {
+            for (int vy = -1; vy < 2; vy++)
+            {
+                if (!walls[x + vx, y + vy])
+                {
+                    nb += seedQuantities[x + vx, y + vy];
+                }
+            }
+        }
+        return nb;
+    }
+
+    public int getMaxQuantityOnBlock()
+    {
+        return maxQuantityOnBlock;
     }
 }
