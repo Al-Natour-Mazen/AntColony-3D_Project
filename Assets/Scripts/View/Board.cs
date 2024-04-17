@@ -2,75 +2,73 @@
 
 public class Board : MonoBehaviour
 {
-    public int largeur = 20;
-    public int hauteur = 10;
-    public int qMax = 4;
-    public int nbFourmi = 10;
-    public int nbMur = 10;
-    public int nbGraines = 10;
+    [Header("Board Settings")]
+    public int width = 20;
+    public int height = 10;
 
-    public GameObject murPrefab;
-    public GameObject fourmiPrefab;
-    public GameObject grainPrefab;
-    public GameObject AntHill;
+    [Header("Entity Counts")]
+    public int antCount = 10;
+    public int wallCountDensity = 10;
+    public int seedCountDensity = 10;
 
-    public Transform AntHolder;
-    public Transform WallHolder;
-    public Transform GraineHolder;
+    [Header("Entity Prefabs")]
+    public GameObject wallPrefab;
+    public GameObject antPrefab;
+    public GameObject seedPrefab;
+    public GameObject antHill;
+
+    [Header("Transform Holders")]
+    public Transform antHolder;
+    public Transform wallHolder;
+    public Transform seedHolder;
+    public Transform colonyHolder;
+
+    [Header("Seed Settings")]
+    public int maxSeedQuantity = 4;
 
     private AntConlonySimulation antSimulation;
 
     void Start()
     {
-        // Créer une instance de la fourmilière
-        antSimulation = new AntConlonySimulation(largeur, hauteur, qMax, nbMur, nbFourmi, nbGraines);
+        antSimulation = new AntConlonySimulation(width, height, maxSeedQuantity, wallCountDensity, antCount, seedCountDensity);
 
-        int x, y;
-        (x, y) = antSimulation.getAntColonyCoordinate();
-        // Instancier le ANTHILL
-        GameObject anthill = Instantiate(AntHill, new Vector3(x, 0, y), Quaternion.identity);
-
-
-        // Générer les murs
+        InstantiateAnthill();
         GenerateWalls();
-
-        // Générer les fourmis
         GenerateAnts();
-
-        // Générer les grains
-        GenerateGrains();
+        GenerateSeeds();
     }
 
     void Update()
     {
-        // Faire évoluer la fourmilière
         antSimulation.evolveTheAntColony();
 
         Debug.Log("nb fourmis =" + antSimulation.getAntsInColony().Count);
         Debug.Log("nb graines =" + antSimulation.GetTotalSeedOutColony());
         Debug.Log("nb graines Hill =" + antSimulation.GetTotalSeedInColony());
 
-        // Recréer les fourmis et les grains
+
         GenerateAnts();
-        GenerateGrains();
+        GenerateSeeds();
+    }
+
+    void InstantiateAnthill()
+    {
+        int x, y;
+        (x, y) = antSimulation.getAntColonyCoordinate();
+        InstantiateGameObject(antHill, x, 0, y, colonyHolder);
     }
 
     void GenerateWalls()
     {
-        // Supprimer les murs existants
-        foreach (Transform child in WallHolder)
-        {
-            Destroy(child.gameObject);
-        }
+        ClearGameObjects(wallHolder);
 
-        for (int x = 0; x < largeur + 2; x++)
+        for (int x = 0; x < width + 2; x++)
         {
-            for (int y = 0; y < hauteur + 2; y++)
+            for (int y = 0; y < height + 2; y++)
             {
-                if (antSimulation.IsAWallInCoordinate(x,y))
+                if (antSimulation.IsAWallAt(x, y))
                 {
-                    GameObject wall = Instantiate(murPrefab, new Vector3(x, 0, y), Quaternion.identity);
-                    wall.transform.SetParent(WallHolder);
+                    InstantiateGameObject(wallPrefab, x, 0, y, wallHolder);
                 }
             }
         }
@@ -78,62 +76,47 @@ public class Board : MonoBehaviour
 
     void GenerateAnts()
     {
-        // Supprimer les fourmis existants
-        foreach (Transform child in AntHolder)
-        {
-            Destroy(child.gameObject);
-        }
+        ClearGameObjects(antHolder);
 
-        foreach (Ant f in antSimulation.getAntsInColony())
+        foreach (Ant ant in antSimulation.getAntsInColony())
         {
-            GameObject ant = Instantiate(fourmiPrefab, new Vector3(f.GetX(), 0.5f, f.GetY()), Quaternion.identity);
-            ant.transform.SetParent(AntHolder);
-            if (f.IsCarryingSeed())
+            GameObject newAnt = InstantiateGameObject(antPrefab, ant.GetX(), 0.5f, ant.GetY(), antHolder);
+            Renderer renderer = newAnt.GetComponent<Renderer>();
+
+            if (renderer != null && ant.IsCarryingSeed())
             {
-                Renderer renderer = ant.GetComponent<Renderer>();
-                if (renderer != null)
-                {
-                    renderer.material.color = Color.blue;
-                }
+                renderer.material.color = Color.blue;
             }
         }
     }
 
-    void GenerateGrains()
+    void GenerateSeeds()
     {
-        // Supprimer les Grains existants
-        foreach (Transform child in GraineHolder)
-        {
-            Destroy(child.gameObject);
-        }
+        ClearGameObjects(seedHolder);
 
-        for (int x = 0; x < largeur + 2; x++)
+        for (int x = 0; x < width + 2; x++)
         {
-            for (int y = 0; y < hauteur + 2; y++)
+            for (int y = 0; y < height + 2; y++)
             {
-                int qte = antSimulation.getSeedQuantityOnCoordinate(x, y);
+                int seedQuantity = antSimulation.getSeedQuantityAt(x, y);
 
-                if (qte > 0)
+                if (seedQuantity > 0)
                 {
-                    GameObject graines = Instantiate(grainPrefab, new Vector3(x + 0.5f, 0.1f, y + 0.5f), Quaternion.identity);
-                    graines.transform.SetParent(GraineHolder);
+                    GameObject newSeed = InstantiateGameObject(seedPrefab, x + 0.5f, 0.1f, y + 0.5f, seedHolder);
+                    Renderer renderer = newSeed.GetComponent<Renderer>();
 
-                    // Modifier la couleur de l'objet graine en fonction de la quantité de graines
-                    Renderer renderer = graines.GetComponent<Renderer>();
                     if (renderer != null)
                     {
-                        if (qte == 1)
+                        if (seedQuantity == 1)
                         {
-                            // Utiliser une couleur unie si la quantité de graines est égale à 1
                             renderer.material.color = Color.yellow;
                         }
                         else
                         {
-                            // Utiliser un dégradé de couleur jaune à vert en fonction de la quantité de graines
-                            Color originalColor = Color.yellow; // Jaune
-                            Color targetColor = Color.green; // Vert
-                            float intensity = (float)(qte - 1) / (qMax - 1); // Normaliser la quantité de graines
-                            renderer.material.color = Color.Lerp(originalColor, targetColor, intensity); // Interpoler entre la couleur jaune et la couleur verte
+                            Color originalColor = Color.yellow;
+                            Color targetColor = Color.green;
+                            float intensity = (float)(seedQuantity - 1) / (maxSeedQuantity - 1);
+                            renderer.material.color = Color.Lerp(originalColor, targetColor, intensity);
                         }
                     }
                 }
@@ -141,5 +124,18 @@ public class Board : MonoBehaviour
         }
     }
 
+    void ClearGameObjects(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 
+    GameObject InstantiateGameObject(GameObject prefab, float x, float y, float z, Transform parent)
+    {
+        GameObject obj = Instantiate(prefab, new Vector3(x, y, z), Quaternion.identity);
+        obj.transform.SetParent(parent);
+        return obj;
+    }
 }
