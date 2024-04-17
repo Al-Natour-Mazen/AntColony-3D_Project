@@ -174,7 +174,7 @@ MonoBehaviour:
   hauteur: 100
   qMax: 4
   nbFourmi: 60
-  nbMur: 450
+  nbMur: 1200
   nbGraines: 421
   murPrefab: {fileID: 986852074}
   fourmiPrefab: {fileID: 511660893}
