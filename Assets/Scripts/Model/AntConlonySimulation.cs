@@ -48,7 +48,7 @@ public class AntConlonySimulation
         return colony.GetTheAnts();
     }
 
-    public int getSeedQuantityOnCoordinate(int x , int y)
+    public int getSeedQuantityAt(int x , int y)
     {
         return gridColony.GetSeedQuantity(x, y);
     }
@@ -58,7 +58,7 @@ public class AntConlonySimulation
         colony.Progress();
     }
 
-    public bool IsAWallInCoordinate(int x , int y)
+    public bool IsAWallAt(int x , int y)
     {
         return gridColony.GetWall(x, y);    
     }
