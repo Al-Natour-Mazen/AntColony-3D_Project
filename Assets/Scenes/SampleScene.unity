@@ -156,6 +156,7 @@ Transform:
   - {fileID: 1606619132}
   - {fileID: 1690245243}
   - {fileID: 1118260908}
+  - {fileID: 741122353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &108614772
@@ -170,19 +171,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5b6eb75d2ca164da77c6b88a59b889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  largeur: 100
-  hauteur: 100
-  qMax: 4
-  nbFourmi: 60
-  nbMur: 1200
-  nbGraines: 421
-  murPrefab: {fileID: 986852074}
-  fourmiPrefab: {fileID: 511660893}
-  grainPrefab: {fileID: 463785256}
-  AntHill: {fileID: 1233921070}
-  AntHolder: {fileID: 1606619132}
-  WallHolder: {fileID: 1690245243}
-  GraineHolder: {fileID: 1118260908}
+  width: 80
+  height: 50
+  antCount: 33
+  wallCountDensity: 245
+  seedCountDensity: 334
+  wallPrefab: {fileID: 986852074}
+  antPrefab: {fileID: 511660893}
+  seedPrefab: {fileID: 463785256}
+  antHill: {fileID: 1233921070}
+  antHolder: {fileID: 1606619132}
+  wallHolder: {fileID: 1690245243}
+  seedHolder: {fileID: 1118260908}
+  colonyHolder: {fileID: 741122353}
+  maxSeedQuantity: 4
 --- !u!1 &463785256
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +491,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &741122352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741122353}
+  m_Layer: 0
+  m_Name: ColonyHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &741122353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741122352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 108614771}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,7 +852,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -312.3}
-  m_LocalScale: {x: 1, y: 8, z: 1}
+  m_LocalScale: {x: 3, y: 5, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
