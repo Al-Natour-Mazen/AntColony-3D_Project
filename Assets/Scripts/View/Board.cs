@@ -26,6 +26,10 @@ public class Board : MonoBehaviour
     [Header("Seed Settings")]
     public int maxSeedQuantity = 4;
 
+    [Header("Time Settings")]
+    public float simulationSpeed = 1.0f;
+    private float lastTime;
+
     private AntConlonySimulation antSimulation;
 
     void Start()
@@ -36,19 +40,28 @@ public class Board : MonoBehaviour
         GenerateWalls();
         GenerateAnts();
         GenerateSeeds();
+
+        lastTime = Time.fixedTime;
     }
 
     void Update()
     {
-        antSimulation.evolveTheAntColony();
+        float currentTime = Time.fixedTime;
+        if (simulationSpeed <= (currentTime - lastTime))
+        {
+            // We update the time to the new one.
+            lastTime = currentTime;
 
-        Debug.Log("nb fourmis =" + antSimulation.getAntsInColony().Count);
-        Debug.Log("nb graines =" + antSimulation.GetTotalSeedOutColony());
-        Debug.Log("nb graines Hill =" + antSimulation.GetTotalSeedInColony());
+            antSimulation.evolveTheAntColony();
+
+            Debug.Log("nb fourmis =" + antSimulation.getAntsInColony().Count);
+            Debug.Log("nb graines =" + antSimulation.GetTotalSeedOutColony());
+            Debug.Log("nb graines Hill =" + antSimulation.GetTotalSeedInColony());
 
 
-        GenerateAnts();
-        GenerateSeeds();
+            GenerateAnts();
+            GenerateSeeds();
+        }
     }
 
     void InstantiateAnthill()
