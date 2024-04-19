@@ -73,6 +73,11 @@ public class AntConlonySimulation
         return colony.GetSeedQuantity();
     }
 
+    public int GetMaxSeedQuantityOnBlock()
+    {
+        return gridColony.GetMaxQuantityOnBlock();
+    }
+
     private void InitRandomEnvirnomentSimulation(System.Random rand)
     {
         // Placer les murs aléatoirement
@@ -130,7 +135,7 @@ public class AntConlonySimulation
 
             if (!gridColony.GetWall(x, y))
             {
-                int qte = rand.Next(gridColony.getMaxQuantityOnBlock()  + 1);
+                int qte = rand.Next(gridColony.GetMaxQuantityOnBlock()  + 1);
                 gridColony.SetSeedQuantity(x, y, qte);
             }
         }
