@@ -127,7 +127,7 @@ public class GridColony
         return nb;
     }
 
-    public int getMaxQuantityOnBlock()
+    public int GetMaxQuantityOnBlock()
     {
         return maxQuantityOnBlock;
     }
