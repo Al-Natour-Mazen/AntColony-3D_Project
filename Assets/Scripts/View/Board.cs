@@ -1,16 +1,9 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Board : MonoBehaviour
 {
-    [Header("Board Settings")]
-    public int width = 20;
-    public int height = 10;
-
-    [Header("Entity Counts")]
-    public int antCount = 10;
-    public int wallCountDensity = 10;
-    public int seedCountDensity = 10;
-
     [Header("Entity Prefabs")]
     public GameObject wallPrefab;
     public GameObject antPrefab;
@@ -23,55 +16,26 @@ public class Board : MonoBehaviour
     public Transform seedHolder;
     public Transform colonyHolder;
 
-    [Header("Seed Settings")]
-    public int maxSeedQuantity = 4;
+    private int width, height;
 
-    [Header("Time Settings")]
-    public float simulationSpeed = 1.0f;
-    private float lastTime;
-
-    private AntConlonySimulation antSimulation;
-
-    void Start()
+    public void SetWidthBoard(int width)
     {
-        antSimulation = new AntConlonySimulation(width, height, maxSeedQuantity, wallCountDensity, antCount, seedCountDensity);
-
-        InstantiateAnthill();
-        GenerateWalls();
-        GenerateAnts();
-        GenerateSeeds();
-
-        lastTime = Time.fixedTime;
+        this.width = width;
     }
 
-    void Update()
+    public void SetHeightBoard(int height)
     {
-        float currentTime = Time.fixedTime;
-        if (simulationSpeed <= (currentTime - lastTime))
-        {
-            // We update the time to the new one.
-            lastTime = currentTime;
-
-            antSimulation.EvolveTheAntColony();
-
-            Debug.Log("nb fourmis =" + antSimulation.GetAntsInColony().Count);
-            Debug.Log("nb graines =" + antSimulation.GetTotalSeedOutColony());
-            Debug.Log("nb graines Hill =" + antSimulation.GetTotalSeedInColony());
-
-
-            GenerateAnts();
-            GenerateSeeds();
-        }
+        this.height = height;
     }
 
-    void InstantiateAnthill()
+    public void InstantiateAnthill(AntConlonySimulation antSimulation)
     {
         int x, y;
         (x, y) = antSimulation.GetAntColonyCoordinate();
         InstantiateGameObject(antHill, x, 0, y, colonyHolder);
     }
 
-    void GenerateWalls()
+    public void GenerateWalls(AntConlonySimulation antSimulation)
     {
         ClearGameObjects(wallHolder);
 
@@ -87,7 +51,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    void GenerateAnts()
+    public void GenerateAnts(AntConlonySimulation antSimulation)
     {
         ClearGameObjects(antHolder);
 
@@ -103,7 +67,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    void GenerateSeeds()
+    public void GenerateSeeds(AntConlonySimulation antSimulation)
     {
         ClearGameObjects(seedHolder);
 
@@ -128,7 +92,7 @@ public class Board : MonoBehaviour
                         {
                             Color originalColor = Color.yellow;
                             Color targetColor = Color.green;
-                            float intensity = (float)(seedQuantity - 1) / (maxSeedQuantity - 1);
+                            float intensity = (float)(seedQuantity - 1) / (antSimulation.GetMaxSeedQuantityOnBlock() - 1);
                             renderer.material.color = Color.Lerp(originalColor, targetColor, intensity);
                         }
                     }
