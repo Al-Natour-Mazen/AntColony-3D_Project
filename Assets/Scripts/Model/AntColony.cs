@@ -33,7 +33,7 @@ public class AntColony
         return seedQuantity;
     }
 
-    public void setSeedQuantity(int quanity)
+    public void SetSeedQuantity(int quanity)
     {
         seedQuantity += quanity;
     }
@@ -42,7 +42,7 @@ public class AntColony
     {
         return theAnts;
     }
-    public void addNewAnt(Ant ant)
+    public void AddNewAnt(Ant ant)
     {
         if (theAnts == null && ant != null)
         {
@@ -79,7 +79,7 @@ public class AntColony
             } while ((gridColony.GetWall(deltaX, deltaY) || gridColony.ContainsAnt(deltaX, deltaY) ) && cptEssai < 100);
             if (cptEssai < 99)
             {
-                UpdateFourmisArray(posX, posY, deltaX, deltaY, f);
+                UpdateAntsArray(posX, posY, deltaX, deltaY, f);
                 if (f.IsCarryingSeed() && (f.GetX() != f.GetColonyX() || f.GetY() != f.GetColonyY()))
                 {
                     HandleAntCarryingSeed(f, aSupprimer);
@@ -91,7 +91,7 @@ public class AntColony
             // Ajouter une nouvelle fourmi à la colonie avec des coordonnées aléatoires
             int randomX = UnityEngine.Random.Range(1, gridColony.GetWidth() + 1);
             int randomY = UnityEngine.Random.Range(1, gridColony.GetHeight() + 1);
-            addNewAnt(randomX, randomY);
+            this.AddNewAnt(randomX, randomY);
             theAnts.Remove(fourmi);
         }
     }
@@ -132,7 +132,7 @@ public class AntColony
         return (deltaX, deltaY);
     }
 
-    private void UpdateFourmisArray(int posX, int posY, int deltaX, int deltaY, Ant f)
+    private void UpdateAntsArray(int posX, int posY, int deltaX, int deltaY, Ant f)
     {
         gridColony.SetAnt(posX, posY,false);
         gridColony.SetAnt(deltaX, deltaY, true);
@@ -168,7 +168,7 @@ public class AntColony
         }
     }
 
-    public void addNewAnt(int x, int y)
+    public void AddNewAnt(int x, int y)
     {
         Ant ant;
         if (!gridColony.ContainsAnt(x,y) && !gridColony.GetWall(x,y))              

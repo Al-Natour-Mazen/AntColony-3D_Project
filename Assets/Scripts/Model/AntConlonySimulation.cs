@@ -38,22 +38,22 @@ public class AntConlonySimulation
         return (XCoordonne,YCoordonne);
     }
 
-    public (int,int) getAntColonyCoordinate()
+    public (int,int) GetAntColonyCoordinate()
     {
         return (colony.GetXColonyCoordinate(), colony.GetYColonyCoordinate());
     }
 
-    public List<Ant> getAntsInColony()
+    public List<Ant> GetAntsInColony()
     {
         return colony.GetTheAnts();
     }
 
-    public int getSeedQuantityAt(int x , int y)
+    public int GetSeedQuantityAt(int x , int y)
     {
         return gridColony.GetSeedQuantity(x, y);
     }
 
-    public void evolveTheAntColony()
+    public void EvolveTheAntColony()
     {
         colony.Progress();
     }
@@ -111,7 +111,7 @@ public class AntConlonySimulation
             int y = rand.Next(gridColony.GetHeight());
             if ((!gridColony.GetWall(x, y) || !gridColony.ContainsAnt(x, y)))
             { 
-                colony.addNewAnt(x, y);
+                colony.AddNewAnt(x, y);
                 nbFourmisPlaces++;
             }
         }

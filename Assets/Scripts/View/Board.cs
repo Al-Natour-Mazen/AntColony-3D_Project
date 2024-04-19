@@ -52,9 +52,9 @@ public class Board : MonoBehaviour
             // We update the time to the new one.
             lastTime = currentTime;
 
-            antSimulation.evolveTheAntColony();
+            antSimulation.EvolveTheAntColony();
 
-            Debug.Log("nb fourmis =" + antSimulation.getAntsInColony().Count);
+            Debug.Log("nb fourmis =" + antSimulation.GetAntsInColony().Count);
             Debug.Log("nb graines =" + antSimulation.GetTotalSeedOutColony());
             Debug.Log("nb graines Hill =" + antSimulation.GetTotalSeedInColony());
 
@@ -67,7 +67,7 @@ public class Board : MonoBehaviour
     void InstantiateAnthill()
     {
         int x, y;
-        (x, y) = antSimulation.getAntColonyCoordinate();
+        (x, y) = antSimulation.GetAntColonyCoordinate();
         InstantiateGameObject(antHill, x, 0, y, colonyHolder);
     }
 
@@ -91,7 +91,7 @@ public class Board : MonoBehaviour
     {
         ClearGameObjects(antHolder);
 
-        foreach (Ant ant in antSimulation.getAntsInColony())
+        foreach (Ant ant in antSimulation.GetAntsInColony())
         {
             GameObject newAnt = InstantiateGameObject(antPrefab, ant.GetX(), 0.5f, ant.GetY(), antHolder);
             Renderer renderer = newAnt.GetComponent<Renderer>();
@@ -111,7 +111,7 @@ public class Board : MonoBehaviour
         {
             for (int y = 0; y < height + 2; y++)
             {
-                int seedQuantity = antSimulation.getSeedQuantityAt(x, y);
+                int seedQuantity = antSimulation.GetSeedQuantityAt(x, y);
 
                 if (seedQuantity > 0)
                 {
