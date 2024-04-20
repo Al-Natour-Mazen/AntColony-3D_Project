@@ -24,6 +24,7 @@ public class SimulationController : MonoBehaviour
     [Header("UI Settings")]
     public ProgressBar progressBar;
     public PlayPauseButton playPauseButton;
+    public Menu menu;
 
     private float lastTime;
     private AntConlonySimulation antSimulation;
@@ -62,6 +63,8 @@ public class SimulationController : MonoBehaviour
         float currentTime = Time.fixedTime;
         if (simulationSpeed <= (currentTime - lastTime) && playPauseButton.IsPlaying())
         {
+             menu.DisableButton();
+
             // Mise à jour du modèle
             antSimulation.EvolveTheAntColony();
 
@@ -78,6 +81,11 @@ public class SimulationController : MonoBehaviour
             board.GenerateSeeds(antSimulation);
 
             lastTime = currentTime; // Met à jour le temps de la dernière mise à jour
+        }
+
+        if (!playPauseButton.IsPlaying())
+        {
+            menu.EnableButton();
         }
     }
 }

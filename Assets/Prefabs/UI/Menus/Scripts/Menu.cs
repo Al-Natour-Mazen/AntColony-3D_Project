@@ -17,4 +17,23 @@ public class Menu : MonoBehaviour
             text.text = title;
         }
     }
+
+    public void EnableButton()
+    {
+        ButtonClick(true);
+    }
+
+    public void DisableButton()
+    {
+        ButtonClick(false);
+    }
+
+    private void ButtonClick(bool state)
+    {
+        Button button = gameObject.GetComponentInChildren<Button>();
+        if(button != null)
+        {
+            button.enabled = state;
+        }
+    }
 }
