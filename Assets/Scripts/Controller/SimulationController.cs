@@ -18,16 +18,17 @@ public class SimulationController : MonoBehaviour
     [Header("Seed Settings")]
     public int maxSeedQuantityPerBlock = 4;
 
-    [Header("Time Settings")]
-    public float simulationSpeed = 1.0f;
+   
 
     [Header("UI Settings")]
     public ProgressBar progressBar;
     public PlayPauseButton playPauseButton;
+    public SliderTextView sliderTextView;
     public Menu menu;
 
     private float lastTime;
     private AntConlonySimulation antSimulation;
+    private float simulationSpeed = 1.0f;
 
 
     void Start()
@@ -44,11 +45,13 @@ public class SimulationController : MonoBehaviour
         board.GenerateSeeds(antSimulation);
 
         // Start the coroutine to initialize the progress bar
-        StartCoroutine(InitializeProgressBar());
+        StartCoroutine(InitializeUIComponents());
+
+        
     }
 
     // Coroutine to initialize the progress bar
-    IEnumerator InitializeProgressBar()
+    IEnumerator InitializeUIComponents()
     {
         // Wait for the end of the frame. This ensures that all other Start and Update methods have been called for this frame.
         // This is useful when we want to make sure that all other objects and their scripts have been initialized before using them.
@@ -57,10 +60,24 @@ public class SimulationController : MonoBehaviour
         // Now that we are sure everything is initialized, we can set the max value of the progress bar.
         // We use the total number of seeds outside the colony as the max value.
         progressBar.SetMaxValue(antSimulation.GetTotalSeedOutColony());
+        simulationSpeed = sliderTextView.GetCurrentValue();
     }
     void Update()
     {
         float currentTime = Time.fixedTime;
+        float sliderValue = sliderTextView.GetCurrentValue();
+      
+        if (sliderValue <= 0)
+        {
+            simulationSpeed = 1.0f; 
+        }
+        else
+        {
+            // Inverse the slider value before assigning it to simulationSpeed
+            simulationSpeed = (1.2f / (sliderValue + 0.001f * 100));
+            //simulationSpeed = Mathf.Log(sliderValue + 1) * 2.0f;
+        }
+
         if (simulationSpeed <= (currentTime - lastTime) && playPauseButton.IsPlaying())
         {
              menu.DisableButton();
