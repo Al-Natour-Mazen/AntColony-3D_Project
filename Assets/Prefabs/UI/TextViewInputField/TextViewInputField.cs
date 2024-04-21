@@ -93,4 +93,12 @@ public class TextViewInputField : MonoBehaviour
     {
         return inputField.text;
     }
+
+    /// <summary>
+    /// Sets the content of the InputField.
+    /// </summary>
+    public void SetInputFieldValue(string value)
+    {
+        inputField.text = value;
+    }
 }
