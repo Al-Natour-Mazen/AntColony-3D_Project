@@ -30,6 +30,7 @@ public class Board : MonoBehaviour
 
     public void InstantiateAnthill(AntConlonySimulation antSimulation)
     {
+        ClearGameObjects(colonyHolder);
         int x, y;
         (x, y) = antSimulation.GetAntColonyCoordinate();
         InstantiateGameObject(antHill, x, 0, y, colonyHolder);
