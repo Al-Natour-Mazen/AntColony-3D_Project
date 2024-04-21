@@ -243,7 +243,7 @@ MonoBehaviour:
   height: 40
   antCount: 35
   wallCountDensity: 444
-  seedCountDensity: 555
+  seedCountDensity: 145
   maxSeedQuantityPerBlock: 111
   progressBar: {fileID: 1239947034}
   playPauseButton: {fileID: 1529518739}
@@ -611,7 +611,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 107362296119373423, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_Text
-      value: 'Number of Ant :'
+      value: 'Width Of Simulation :'
       objectReference: {fileID: 0}
     - target: {fileID: 107362296119373423, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -619,7 +619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 184070049807114244, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: staticText
-      value: 'Width Of Simulation :'
+      value: 'Width Of The Simulation :'
       objectReference: {fileID: 0}
     - target: {fileID: 3074012117106035306, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1408,7 +1408,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 107362296119373423, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_Text
-      value: 'Number of Ant :'
+      value: 'Height Of Simulation :'
       objectReference: {fileID: 0}
     - target: {fileID: 107362296119373423, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -1416,7 +1416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 184070049807114244, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: staticText
-      value: 'Height Of Simulation :'
+      value: 'Height Of The Simulation :'
       objectReference: {fileID: 0}
     - target: {fileID: 3074012117106035306, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_AnchorMax.y
