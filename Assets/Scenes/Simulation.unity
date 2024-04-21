@@ -3285,6 +3285,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 202671218}
     m_Modifications:
+    - target: {fileID: 1511176052074749313, guid: 49d99a41fb2e98e429909ee8aed47f37, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511176052074749313, guid: 49d99a41fb2e98e429909ee8aed47f37, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 170
+      objectReference: {fileID: 0}
     - target: {fileID: 1924424902855348209, guid: 49d99a41fb2e98e429909ee8aed47f37, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
