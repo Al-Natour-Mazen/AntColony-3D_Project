@@ -24,11 +24,16 @@ public class SimulationController : MonoBehaviour
     public ProgressBar progressBar;
     public PlayPauseButton playPauseButton;
     public SliderTextView sliderTextView;
+    public StaticDynamicTextView dynamicTextViewAnt;
+    public StaticDynamicTextView dynamicTextViewTime;
+    public StaticDynamicTextView dynamicTextViewSeedInColony;
+    public StaticDynamicTextView dynamicTextViewSeedOutColony;
     public Menu menu;
 
     private float lastTime;
     private AntConlonySimulation antSimulation;
     private float simulationSpeed = 1.0f;
+    private float elapsedTime = 0f;
 
 
     void Start()
@@ -61,48 +66,61 @@ public class SimulationController : MonoBehaviour
         // We use the total number of seeds outside the colony as the max value.
         progressBar.SetMaxValue(antSimulation.GetTotalSeedOutColony());
         simulationSpeed = sliderTextView.GetCurrentValue();
+        dynamicTextViewTime.DynamicText = FormatTime(elapsedTime);
+        dynamicTextViewAnt.DynamicText = antSimulation.GetAntsInColony().Count.ToString();
+        dynamicTextViewSeedInColony.DynamicText = antSimulation.GetTotalSeedInColony().ToString();
+        dynamicTextViewSeedOutColony.DynamicText = antSimulation.GetTotalSeedOutColony().ToString();
     }
     void Update()
     {
         float currentTime = Time.fixedTime;
         float sliderValue = sliderTextView.GetCurrentValue();
-      
+
         if (sliderValue <= 0)
         {
-            simulationSpeed = 1.0f; 
+            simulationSpeed = 1.0f;
         }
         else
         {
             // Inverse the slider value before assigning it to simulationSpeed
             simulationSpeed = (1.2f / (sliderValue + 0.001f * 100));
-            //simulationSpeed = Mathf.Log(sliderValue + 1) * 2.0f;
         }
 
-        if (simulationSpeed <= (currentTime - lastTime) && playPauseButton.IsPlaying())
+        if (playPauseButton.IsPlaying())
         {
-             menu.DisableButton();
+            if (simulationSpeed <= (currentTime - lastTime))
+            {
+                menu.DisableButton();
 
-            // Mise à jour du modèle
-            antSimulation.EvolveTheAntColony();
+                // Mise à jour du modèle
+                antSimulation.EvolveTheAntColony();
 
-            Debug.Log("nb fourmis =" + antSimulation.GetAntsInColony().Count);
-            Debug.Log("nb graines =" + antSimulation.GetTotalSeedOutColony());
-            Debug.Log("nb graines Hill =" + antSimulation.GetTotalSeedInColony());
-            Debug.Log("max val ProgressBar =" + progressBar.GetMaxValue());
-            Debug.Log("current val ProgressBar =" + progressBar.GetCurrentValue());
-           
+                dynamicTextViewSeedInColony.DynamicText = antSimulation.GetTotalSeedInColony().ToString();
+                dynamicTextViewSeedOutColony.DynamicText = antSimulation.GetTotalSeedOutColony().ToString();
 
-            // Mise à jour de la vue avec les données du modèle
-            progressBar.AdvanceProgress(antSimulation.GetTotalSeedInColony());
-            board.GenerateAnts(antSimulation);
-            board.GenerateSeeds(antSimulation);
+                // Mise à jour de la vue avec les données du modèle
+                progressBar.AdvanceProgress(antSimulation.GetTotalSeedInColony());
+                board.GenerateAnts(antSimulation);
+                board.GenerateSeeds(antSimulation);
 
-            lastTime = currentTime; // Met à jour le temps de la dernière mise à jour
+                lastTime = currentTime; // Met à jour le temps de la dernière mise à jour
+            }
+
+            elapsedTime += Time.deltaTime * sliderValue; // Always increase elapsedTime when the simulation is playing
+            dynamicTextViewTime.DynamicText = FormatTime(elapsedTime);
         }
-
-        if (!playPauseButton.IsPlaying())
+        else
         {
             menu.EnableButton();
         }
+    }
+
+    // Méthode pour formater le temps en format lisible (heures:minutes:secondes)
+    string FormatTime(float timeInSeconds)
+    {
+        int hours = Mathf.FloorToInt(timeInSeconds / 3600f);
+        int minutes = Mathf.FloorToInt((timeInSeconds % 3600f) / 60f);
+        int seconds = Mathf.FloorToInt(timeInSeconds % 60f);
+        return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
     }
 }
