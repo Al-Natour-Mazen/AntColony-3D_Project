@@ -43,6 +43,7 @@ public class SimulationController : MonoBehaviour
 
     private void InitializeSimulation()
     {
+        elapsedTime = 0F;
         antSimulation = new AntConlonySimulation(width, height, maxSeedQuantityPerBlock, wallCountDensity, antCount, seedCountDensity);
         InitializeBoard();
         StartCoroutine(InitializeUIComponents());
