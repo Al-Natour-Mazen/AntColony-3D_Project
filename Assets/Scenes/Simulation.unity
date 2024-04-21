@@ -244,7 +244,7 @@ MonoBehaviour:
   antCount: 35
   wallCountDensity: 444
   seedCountDensity: 145
-  maxSeedQuantityPerBlock: 111
+  maxSeedQuantityPerBlock: 25
   progressBar: {fileID: 1239947034}
   playPauseButton: {fileID: 1529518739}
   sliderTextView: {fileID: 1911664415}
