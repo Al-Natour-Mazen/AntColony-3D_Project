@@ -10,7 +10,7 @@ public class AntConlonySimulation
 {
     private GridColony gridColony;
     private AntColony colony;
-    private static int GapAroundHill = 12;
+    private static int GapAroundHill = 8;
     private int nbWallsSimulation, nbAntsSimulation, nbSeedsSimulation;
 
     public AntConlonySimulation(int width, int height, int quantityMaxSeedPerBlock, int nbMurs, int nbFourmis, int nbGraines)
