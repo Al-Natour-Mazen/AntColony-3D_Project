@@ -28,6 +28,12 @@ public class SimulationController : MonoBehaviour
     public StaticDynamicTextView dynamicTextViewTime;
     public StaticDynamicTextView dynamicTextViewSeedInColony;
     public StaticDynamicTextView dynamicTextViewSeedOutColony;
+    public TextViewInputField inputfieldAnt;
+    public TextViewInputField inputfieldWallDensity;
+    public TextViewInputField inputfieldSeedDensity;
+    public TextViewInputField inputfieldSeedPerBlock;
+    public TextViewInputField inputfieldWidthSimulation;
+    public TextViewInputField inputfieldHeightSimulation;
     public Menu menu;
 
     private float lastTime;
@@ -37,6 +43,11 @@ public class SimulationController : MonoBehaviour
 
 
     void Start()
+    {
+        InitSimulation();
+    }
+
+    private void InitSimulation()
     {
         // Initialisation du modèle avec les données
         antSimulation = new AntConlonySimulation(width, height, maxSeedQuantityPerBlock, wallCountDensity, antCount, seedCountDensity);
@@ -51,8 +62,6 @@ public class SimulationController : MonoBehaviour
 
         // Start the coroutine to initialize the progress bar
         StartCoroutine(InitializeUIComponents());
-
-        
     }
 
     // Coroutine to initialize the progress bar
@@ -122,5 +131,48 @@ public class SimulationController : MonoBehaviour
         int minutes = Mathf.FloorToInt((timeInSeconds % 3600f) / 60f);
         int seconds = Mathf.FloorToInt(timeInSeconds % 60f);
         return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+    }
+
+    public void InitOtherEnvironement()
+    {
+        int numberOfAnt, wallDensity, seedDensity, maxSeedBlock;
+
+        bool isParseSuccessfulAnt = int.TryParse(inputfieldAnt.GetInputFieldValue(), out numberOfAnt);
+        bool isParseSuccessfulWall = int.TryParse(inputfieldWallDensity.GetInputFieldValue(), out wallDensity);
+        bool isParseSuccessfulSeed = int.TryParse(inputfieldSeedDensity.GetInputFieldValue(), out seedDensity);
+        bool isParseSuccessfulSeedBlock = int.TryParse(inputfieldSeedPerBlock.GetInputFieldValue(), out maxSeedBlock);
+     
+        if (isParseSuccessfulAnt && isParseSuccessfulWall && isParseSuccessfulSeed && isParseSuccessfulSeedBlock)
+        {
+            antCount = numberOfAnt;
+            wallCountDensity = wallDensity;
+            seedCountDensity = seedDensity;
+            maxSeedQuantityPerBlock = maxSeedBlock;
+            this.InitSimulation();
+        }
+        else
+        {
+            Debug.Log("Error in InitOtherEnvironement Function");
+        }
+    }
+
+    public void InitOtherDimension()
+    {
+        int width, height ;
+
+        bool isParseSuccessfulWidth = int.TryParse(inputfieldWidthSimulation.GetInputFieldValue(), out width);
+        bool isParseSuccessfulHeight = int.TryParse(inputfieldHeightSimulation.GetInputFieldValue(), out height);
+    
+        if (isParseSuccessfulWidth && isParseSuccessfulHeight)
+        {
+            this.width = width;
+            this.height = height;
+
+            this.InitSimulation();
+        }
+        else
+        {
+            Debug.Log("Error in InitOtherEnvironement Function");
+        }
     }
 }
