@@ -65,7 +65,7 @@ public class SimulationController : MonoBehaviour
     }
 
     // Coroutine to initialize the progress bar
-    IEnumerator InitializeUIComponents()
+    private IEnumerator InitializeUIComponents()
     {
         // Wait for the end of the frame. This ensures that all other Start and Update methods have been called for this frame.
         // This is useful when we want to make sure that all other objects and their scripts have been initialized before using them.
@@ -125,7 +125,7 @@ public class SimulationController : MonoBehaviour
     }
 
     // Méthode pour formater le temps en format lisible (heures:minutes:secondes)
-    string FormatTime(float timeInSeconds)
+    private string FormatTime(float timeInSeconds)
     {
         int hours = Mathf.FloorToInt(timeInSeconds / 3600f);
         int minutes = Mathf.FloorToInt((timeInSeconds % 3600f) / 60f);
