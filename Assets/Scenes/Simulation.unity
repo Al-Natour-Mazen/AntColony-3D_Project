@@ -5000,7 +5000,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 107362296119373423, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_Text
-      value: Number of Ant
+      value: 'Number of Ant :'
       objectReference: {fileID: 0}
     - target: {fileID: 107362296119373423, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -5021,6 +5021,10 @@ PrefabInstance:
     - target: {fileID: 3074012117106035306, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_SizeDelta.x
       value: 506.955
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074012117106035306, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 190.804
       objectReference: {fileID: 0}
     - target: {fileID: 3074012117106035306, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_LocalScale.x
@@ -5185,6 +5189,10 @@ PrefabInstance:
     - target: {fileID: 6330139061583627856, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.74998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6330139061583627856, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6418477953919784029, guid: c0805f178127f0b48a4c13ae4fde34dc, type: 3}
       propertyPath: m_Name
