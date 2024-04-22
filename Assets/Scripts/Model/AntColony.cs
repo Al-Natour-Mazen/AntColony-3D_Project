@@ -167,13 +167,14 @@ public class AntColony
         if (!gridColony.ContainsAnt(x,y) && !gridColony.GetWall(x,y))              
         {
             ant = new Ant(x, y, false, xCoordinateColony, yCoordinateColony);
+            gridColony.SetAnt(x, y, true);
         }
         else
         {
             //on spawn la fourmi à la fourmiliere
             ant = new Ant(xCoordinateColony, yCoordinateColony, false, xCoordinateColony, yCoordinateColony);
+            gridColony.SetAnt(xCoordinateColony, yCoordinateColony, true);
         }
-        gridColony.SetAnt(x, y, true);
         theAnts.Add(ant);
     }
 
