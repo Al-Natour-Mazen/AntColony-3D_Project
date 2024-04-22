@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SimulationController : MonoBehaviour
 {
@@ -179,4 +180,10 @@ public class SimulationController : MonoBehaviour
     {
         return int.TryParse(input, out result);
     }
+
+    public void QuitSimulation()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
+
 }
