@@ -135,12 +135,8 @@ public class AntColony
 
     private void HandleAntCarryingSeed(Ant f, List<Ant> aSupprimer)
     {
-        int deltaXX = f.GetColonyX() - f.GetX();
-        int deltaYY = f.GetColonyY() - f.GetY();
-        if (deltaXX != 0)
-            deltaXX /= Mathf.Abs(deltaXX);
-        if (deltaYY != 0)
-            deltaYY /= Mathf.Abs(deltaYY);
+        int deltaXX = CalculateDelta(f.GetColonyX(), f.GetX());
+        int deltaYY = CalculateDelta(f.GetColonyY(), f.GetY());
         int newPosX = f.GetX() + deltaXX;
         int newPosY = f.GetY() + deltaYY;
         if (!gridColony.GetWall(newPosX, newPosY)  && !gridColony.ContainsAnt(newPosX, newPosY))
@@ -149,16 +145,23 @@ public class AntColony
             gridColony.SetAnt(newPosX, newPosY, true);
             f.SetX(newPosX);
             f.SetY(newPosY);
+            if (f.GetX() == f.GetColonyX() && f.GetY() == f.GetColonyY())
+            {
+                f.Drop();
+                seedQuantity++;
+                gridColony.SetSeedQuantity(f.GetX(), f.GetY(), 0);
+                gridColony.SetAnt(f.GetX(), f.GetY(), false);
+                aSupprimer.Add(f);
+            }
             return;
         }
-        if (newPosX == f.GetColonyX() && newPosY == f.GetColonyY())
-        {
-            f.Drop();
-            seedQuantity++;
-            gridColony.SetSeedQuantity(f.GetX(), f.GetY(), 0);
-            gridColony.SetAnt(f.GetX(), f.GetY(), false);
-            aSupprimer.Add(f);
-        }
+    }
+    private int CalculateDelta(int colonyCoordinate, int antCoordinate)
+    {
+        int delta = colonyCoordinate - antCoordinate;
+        if (delta != 0)
+            delta /= Mathf.Abs(delta);
+        return delta;
     }
 
     public void AddNewAnt(int x, int y)
