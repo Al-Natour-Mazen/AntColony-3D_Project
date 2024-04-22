@@ -161,8 +161,8 @@ public class AntColony
         if (newPosX == f.GetColonyX() && newPosY == f.GetColonyY())
         {
             f.Drop();
-            // qteGraines[newPosX, newPosY]++;
             seedQuantity++;
+            gridColony.SetSeedQuantity(f.GetX(), f.GetY(), 0);
             gridColony.SetAnt(f.GetX(), f.GetY(), false);
             aSupprimer.Add(f);
         }
