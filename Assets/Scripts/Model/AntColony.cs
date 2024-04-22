@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class AntColony
 {
-    private List<Ant> theAnts;
+    private HashSet<Ant> theAnts;
     private int xCoordinateColony, yCoordinateColony;
     private int seedQuantity = 0;
     private GridColony gridColony;
 
     public AntColony(int xCoordinateColony, int yCoordinateColony, GridColony gridGame)
     {
-        this.theAnts = new List<Ant>();
+        theAnts = new HashSet<Ant>();
         this.xCoordinateColony = xCoordinateColony;
         this.yCoordinateColony = yCoordinateColony;
         gridColony = gridGame;
@@ -38,13 +38,14 @@ public class AntColony
         seedQuantity += quanity;
     }
 
-    public List<Ant> GetTheAnts()
+    public HashSet<Ant> GetTheAnts()
     {
         return theAnts;
     }
+
     public void AddNewAnt(Ant ant)
     {
-        if (theAnts == null && ant != null)
+        if (theAnts != null && ant != null)
         {
             theAnts.Add(ant);
         }
@@ -52,7 +53,7 @@ public class AntColony
 
     public void Progress()
     {
-        List<Ant> aSupprimer = new List<Ant>();
+        List<Ant> antsToRemove = new List<Ant>();
         List<Ant> ItFourmi = theAnts.ToList();
         foreach (Ant f in ItFourmi)
         {
@@ -82,11 +83,11 @@ public class AntColony
                 UpdateAntsArray(posX, posY, deltaX, deltaY, f);
                 if (f.IsCarryingSeed() && (f.GetX() != f.GetColonyX() || f.GetY() != f.GetColonyY()))
                 {
-                    HandleAntCarryingSeed(f, aSupprimer);
+                    HandleAntCarryingSeed(f, antsToRemove);
                 }
             }
         }
-        foreach (Ant fourmi in aSupprimer)
+        foreach (Ant fourmi in antsToRemove)
         {
             // Ajouter une nouvelle fourmi à la colonie avec des coordonnées aléatoires
             int randomX = UnityEngine.Random.Range(1, gridColony.GetWidth() + 1);

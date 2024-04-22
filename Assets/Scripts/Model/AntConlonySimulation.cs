@@ -43,7 +43,7 @@ public class AntConlonySimulation
         return (colony.GetXColonyCoordinate(), colony.GetYColonyCoordinate());
     }
 
-    public List<Ant> GetAntsInColony()
+    public HashSet<Ant> GetAntsInColony()
     {
         return colony.GetTheAnts();
     }
