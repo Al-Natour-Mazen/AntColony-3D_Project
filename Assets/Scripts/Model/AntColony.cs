@@ -43,14 +43,6 @@ public class AntColony
         return theAnts;
     }
 
-    public void AddNewAnt(Ant ant)
-    {
-        if (theAnts != null && ant != null)
-        {
-            theAnts.Add(ant);
-        }
-    }
-
     public void Progress()
     {
         List<Ant> antsToRemove = new List<Ant>();
