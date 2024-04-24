@@ -26,7 +26,7 @@ public class QuitSystem : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene(sceneToGo);
+        SceneManager.LoadSceneAsync(sceneToGo);
     }
 
     private void SetActiveQuitBox(bool active)
