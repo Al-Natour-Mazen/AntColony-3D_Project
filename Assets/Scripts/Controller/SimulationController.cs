@@ -181,9 +181,4 @@ public class SimulationController : MonoBehaviour
         return int.TryParse(input, out result);
     }
 
-    public void QuitSimulation()
-    {
-        SceneManager.LoadSceneAsync("MainMenu");
-    }
-
 }
