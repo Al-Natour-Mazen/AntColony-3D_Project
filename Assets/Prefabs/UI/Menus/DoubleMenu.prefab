@@ -228,6 +228,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7948019893601774519, guid: 105e202f12108b143854ba4ccd700c76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c38ea6d6320ccb142b6ccc1f58c3e2f2, type: 3}
+    - target: {fileID: 9194002474136445535, guid: 105e202f12108b143854ba4ccd700c76, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -417,6 +425,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6944426089660014105, guid: 105e202f12108b143854ba4ccd700c76, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948019893601774519, guid: 105e202f12108b143854ba4ccd700c76, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cb8eb9757bb8efc4dae21ccd13d3ec55, type: 3}
+    - target: {fileID: 9194002474136445535, guid: 105e202f12108b143854ba4ccd700c76, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
