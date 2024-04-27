@@ -4780,6 +4780,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2243530701397904803, guid: 3b506be09fb33344d96a29415196452f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.42942327
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243530701397904803, guid: 3b506be09fb33344d96a29415196452f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.42942327
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243530701397904803, guid: 3b506be09fb33344d96a29415196452f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4716981
+      objectReference: {fileID: 0}
     - target: {fileID: 3110286946365115667, guid: 3b506be09fb33344d96a29415196452f, type: 3}
       propertyPath: m_Name
       value: ProgressBar
