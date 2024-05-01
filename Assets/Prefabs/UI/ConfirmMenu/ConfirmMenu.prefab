@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 3199440064045279811}
   - component: {fileID: 7426934708483098365}
   m_Layer: 5
-  m_Name: ConfirmContener
+  m_Name: ConfirmContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -915,7 +915,7 @@ GameObject:
   - component: {fileID: 5060557681207583025}
   - component: {fileID: 1437829250352993046}
   m_Layer: 5
-  m_Name: ButtonContener
+  m_Name: ButtonContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
