@@ -51,7 +51,7 @@ public class ConfirmMenu : MonoBehaviour
     {
         if(sceneToGo != "" && sceneToGo != null)
         {
-            SceneManager.LoadScene(sceneToGo);
+            SceneManager.LoadSceneAsync(sceneToGo);
         }
     }
 
