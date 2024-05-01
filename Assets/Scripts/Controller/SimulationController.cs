@@ -31,6 +31,7 @@ public class SimulationController : MonoBehaviour
     public TextViewInputField inputfieldWidthSimulation;
     public TextViewInputField inputfieldHeightSimulation;
     public Menu menu;
+    public GameObject carousel;
 
     private float lastTime;
     private AntConlonySimulation antSimulation;
@@ -40,6 +41,7 @@ public class SimulationController : MonoBehaviour
     void Start()
     {
         InitializeSimulation();
+        carousel.SetActive(false);
     }
 
     private void InitializeSimulation()
@@ -179,6 +181,12 @@ public class SimulationController : MonoBehaviour
     private bool TryParseInt(string input, out int result)
     {
         return int.TryParse(input, out result);
+    }
+
+    public void ToggleCarousel()
+    {
+        bool isActive = carousel.activeSelf;
+        carousel.SetActive(!isActive);
     }
 
 }
