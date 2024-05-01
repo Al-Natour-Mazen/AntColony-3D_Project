@@ -436,6 +436,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmSimulationInit
       objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 200545637}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2034797242}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InitOtherEnvironement
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: HideConfirmBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SimulationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ConfirmMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6173756951994911370, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2501,6 +2541,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmSimulationGeneration
       objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 200545637}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2025519604}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InitOtherDimension
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: HideConfirmBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SimulationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ConfirmMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232212177235884261, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6173756951994911370, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2890,9 +2970,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 200545637}
-        m_TargetAssemblyTypeName: SimulationController, Assembly-CSharp
-        m_MethodName: InitOtherDimension
+      - m_Target: {fileID: 2025519604}
+        m_TargetAssemblyTypeName: ConfirmMenu, Assembly-CSharp
+        m_MethodName: DisplayConfirmBox
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5432,7 +5512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
       propertyPath: m_AnchorMin.x
@@ -5440,15 +5520,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
-      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
-      propertyPath: m_SizeDelta.y
+      propertyPath: m_SizeDelta.x
       value: 87.14286
+      objectReference: {fileID: 0}
+    - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
       propertyPath: m_LocalScale.x
@@ -5492,11 +5572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 235
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -43.57143
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8858063187679579786, guid: 31ddc6cc5abf30f4a9cd10cfbf186317, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6943,6 +7023,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865cb3f06befc104f96af80c6d4a2510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2025519604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6909426937453565800, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+  m_PrefabInstance: {fileID: 702798735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53967d8a836ebe6438084ac599ebf82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2027212773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7280,6 +7371,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9b3abe138dcfd439312549d787f254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2034797242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6909426937453565800, guid: 2ea8e3941b2d9fa4984292a48da64506, type: 3}
+  m_PrefabInstance: {fileID: 208949974}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53967d8a836ebe6438084ac599ebf82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2087196517
 GameObject:
   m_ObjectHideFlags: 0
@@ -7490,9 +7592,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 200545637}
-        m_TargetAssemblyTypeName: SimulationController, Assembly-CSharp
-        m_MethodName: InitOtherEnvironement
+      - m_Target: {fileID: 2034797242}
+        m_TargetAssemblyTypeName: ConfirmMenu, Assembly-CSharp
+        m_MethodName: DisplayConfirmBox
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
