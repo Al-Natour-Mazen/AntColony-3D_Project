@@ -145,5 +145,20 @@ public class AntConlonySimulation
     {
         return Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
     }
+
+    public static int GetGapAroundHill()
+    {
+        return GapAroundHill;
+    }
+
+    public int GetHeighSimulation()
+    {
+        return gridColony.GetHeight();
+    }
+
+    public int GetWidthSimulation()
+    {
+        return gridColony.GetWidth();
+    }
 }
 
