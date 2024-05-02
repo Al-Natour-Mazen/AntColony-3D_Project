@@ -3722,15 +3722,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657370919798197101, guid: 49d99a41fb2e98e429909ee8aed47f37, type: 3}
       propertyPath: m_Color.b
-      value: 0.8301887
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7657370919798197101, guid: 49d99a41fb2e98e429909ee8aed47f37, type: 3}
       propertyPath: m_Color.g
-      value: 0.69778794
+      value: 0.9337173
       objectReference: {fileID: 0}
     - target: {fileID: 7657370919798197101, guid: 49d99a41fb2e98e429909ee8aed47f37, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.02264148
       objectReference: {fileID: 0}
     - target: {fileID: 8283189461407950921, guid: 49d99a41fb2e98e429909ee8aed47f37, type: 3}
       propertyPath: m_ChildScaleWidth
@@ -4385,7 +4385,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4374945980579350080, guid: 3d3d50d600564694681452059abaa9c5, type: 3}
       propertyPath: staticText
-      value: 'Time elapsed :'
+      value: 'Elapsed time :'
       objectReference: {fileID: 0}
     - target: {fileID: 5483517949588470524, guid: 3d3d50d600564694681452059abaa9c5, type: 3}
       propertyPath: m_Color.a
