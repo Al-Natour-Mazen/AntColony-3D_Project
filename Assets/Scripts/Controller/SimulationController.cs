@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static AntColonyPersistenceManager;
+using static AntColonySaverController;
 
 public class SimulationController : MonoBehaviour
 {
@@ -40,7 +42,6 @@ public class SimulationController : MonoBehaviour
     void Start()
     {
         InitializeSimulation();
-  
     }
 
     private void InitializeSimulation()
@@ -181,4 +182,30 @@ public class SimulationController : MonoBehaviour
     {
         return int.TryParse(input, out result);
     }
+
+    public void SaveSimulation()
+    {
+        AntColonyPersistenceManager.SaveColonyInfo(antSimulation);
+    }
+
+    public void LoadSimulationTEMP()
+    { 
+        List<antColInfos> antColMinis = AntColonyPersistenceManager.LoadColonyInfo();
+        foreach (antColInfos colonyInfo in antColMinis)
+        {
+            string allColonyInfo = "";
+            allColonyInfo += "----- Colony Info " + colonyInfo.number + " -----\n";
+            allColonyInfo += "Width: " + colonyInfo.width + "\n";
+            allColonyInfo += "Height: " + colonyInfo.height + "\n";
+            allColonyInfo += "Ant Colony Coordinate: (" + colonyInfo.X + ", " + colonyInfo.Y + ")\n";
+            allColonyInfo += "Number of Ants: " + colonyInfo.NBAnts + "\n";
+            allColonyInfo += "Total Seeds in Colony: " + colonyInfo.SeedsInColony + "\n";
+            allColonyInfo += "Total Seeds out Colony: " + colonyInfo.SeedsOutColony + "\n";
+            allColonyInfo += "Max Seed Quantity on Block: " + colonyInfo.MaxSeedBlock + "\n";
+            allColonyInfo += "Gap Around The Hill: " + colonyInfo.GapAroundHill + "\n";
+            allColonyInfo += "-----------------------\n";
+            Debug.Log(allColonyInfo);
+        }
+    }
+
 }
