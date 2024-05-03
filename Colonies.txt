@@ -2,10 +2,21 @@
 Colony Saved Number: 1
 Width: 40
 Height: 40
-Ant Colony Coordinate: (16, 17)
+Ant Colony Coordinate: (15, 28)
 Number of Ants: 35
-Total Seeds in Colony: 0
-Total Seeds out of Colony: 1206
+Total Seeds in Colony: 26
+Total Seeds out of Colony: 1160
+Max Seed Quantity on Block: 25
+Gap Around The Hill: 8
+-----------------------
+----- Colony Info -----
+Colony Saved Number: 2
+Width: 40
+Height: 40
+Ant Colony Coordinate: (15, 28)
+Number of Ants: 35
+Total Seeds in Colony: 38
+Total Seeds out of Colony: 1147
 Max Seed Quantity on Block: 25
 Gap Around The Hill: 8
 -----------------------

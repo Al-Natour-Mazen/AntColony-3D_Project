@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static AntColonyPersistenceManager;
-using static AntColonySaverController;
 
 public class SimulationController : MonoBehaviour
 {
