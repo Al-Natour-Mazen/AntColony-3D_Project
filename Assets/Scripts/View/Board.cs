@@ -63,7 +63,7 @@ public class Board : MonoBehaviour
 
             if (renderer != null && ant.IsCarryingSeed())
             {
-                renderer.material.color = Color.blue;
+                renderer.material.color = new Color32(0x00, 0x3A, 0xFD, 0xFF); // Correspond à la couleur hexadécimale #003AFD
             }
         }
     }
