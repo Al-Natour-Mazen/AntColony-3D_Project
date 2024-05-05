@@ -187,24 +187,4 @@ public class SimulationController : MonoBehaviour
         AntColonyPersistenceManager.SaveColonyInfo(antSimulation);
     }
 
-    public void LoadSimulationTEMP()
-    { 
-        List<antColInfos> antColMinis = AntColonyPersistenceManager.LoadColonyInfo();
-        foreach (antColInfos colonyInfo in antColMinis)
-        {
-            string allColonyInfo = "";
-            allColonyInfo += "----- Colony Info " + colonyInfo.number + " -----\n";
-            allColonyInfo += "Width: " + colonyInfo.width + "\n";
-            allColonyInfo += "Height: " + colonyInfo.height + "\n";
-            allColonyInfo += "Ant Colony Coordinate: (" + colonyInfo.X + ", " + colonyInfo.Y + ")\n";
-            allColonyInfo += "Number of Ants: " + colonyInfo.NBAnts + "\n";
-            allColonyInfo += "Total Seeds in Colony: " + colonyInfo.SeedsInColony + "\n";
-            allColonyInfo += "Total Seeds out Colony: " + colonyInfo.SeedsOutColony + "\n";
-            allColonyInfo += "Max Seed Quantity on Block: " + colonyInfo.MaxSeedBlock + "\n";
-            allColonyInfo += "Gap Around The Hill: " + colonyInfo.GapAroundHill + "\n";
-            allColonyInfo += "-----------------------\n";
-            Debug.Log(allColonyInfo);
-        }
-    }
-
 }
