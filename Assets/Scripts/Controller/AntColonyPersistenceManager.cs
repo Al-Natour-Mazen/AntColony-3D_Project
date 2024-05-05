@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public static class AntColonyPersistenceManager
 {
     private static string FilePath = "Colonies.txt"; // Path to the log file
-    private static int colNumber = 0;
 
     // Struct to hold colony information
     public struct antColInfos
@@ -26,11 +25,12 @@ public static class AntColonyPersistenceManager
     public static void SaveColonyInfo(AntConlonySimulation antColonyToSave)
     {
         StreamWriter writer = new StreamWriter(FilePath, true);
-        colNumber++;
+        // Generate a random UUID for the colony number
+        string colonyNumber = System.Guid.NewGuid().ToString().Substring(0, 8);
 
         // Write colony information to the file
         writer.WriteLine("----- Colony Info -----");
-        writer.WriteLine("Colony Saved Number: " + colNumber);
+        writer.WriteLine("Colony Saved Number: " + colonyNumber);
         writer.WriteLine("Width: " + antColonyToSave.GetWidthSimulation());
         writer.WriteLine("Height: " + antColonyToSave.GetHeighSimulation());
         writer.WriteLine("Ant Colony Coordinate: " + antColonyToSave.GetAntColonyCoordinate());
@@ -106,7 +106,8 @@ public static class AntColonyPersistenceManager
         }
         else
         {
-            Debug.LogError("Colony file not found!");
+            //Debug.LogError("Colony file not found!");
+            return null;
         }
 
         return readedListColony;
