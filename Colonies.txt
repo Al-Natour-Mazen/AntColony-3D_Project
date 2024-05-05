@@ -42,3 +42,14 @@ Total Seeds out of Colony: 1207
 Max Seed Quantity on Block: 25
 Gap Around The Hill: 8
 -----------------------
+----- Colony Info -----
+Colony Saved Number: de614b2e
+Width: 40
+Height: 40
+Ant Colony Coordinate: (17, 29)
+Number of Ants: 35
+Total Seeds in Colony: 0
+Total Seeds out of Colony: 1160
+Max Seed Quantity on Block: 25
+Gap Around The Hill: 8
+-----------------------
