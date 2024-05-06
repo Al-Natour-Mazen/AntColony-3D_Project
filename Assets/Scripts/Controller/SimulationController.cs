@@ -32,11 +32,14 @@ public class SimulationController : MonoBehaviour
     public TextViewInputField inputfieldWidthSimulation;
     public TextViewInputField inputfieldHeightSimulation;
     public Menu menu;
+    public ColonyCamera colonyCamera;
 
     private float lastTime;
     private AntConlonySimulation antSimulation;
     private float simulationSpeed = 1.0f;
     private float elapsedTime = 0f;
+    private bool boardInit = false;
+    private bool cameraToInit = true;
 
     void Start()
     {
@@ -49,6 +52,16 @@ public class SimulationController : MonoBehaviour
         antSimulation = new AntConlonySimulation(width, height, maxSeedQuantityPerBlock, wallCountDensity, antCount, seedCountDensity);
         InitializeBoard();
         StartCoroutine(InitializeUIComponents());
+
+        if(colonyCamera != null)
+        {
+            colonyCamera.changeToMainCamera();
+            int x,z;
+            (x,z) = antSimulation.GetAntColonyCoordinate();
+            Vector3 coords = new Vector3(x + 20, 15, z);
+            colonyCamera.transform.localPosition = coords; 
+        }
+        
     }
 
     private void InitializeBoard()
@@ -59,6 +72,23 @@ public class SimulationController : MonoBehaviour
         board.GenerateWalls(antSimulation);
         board.GenerateAnts(antSimulation);
         board.GenerateSeeds(antSimulation);
+        boardInit = true;
+    }
+
+    private void InitCamera()
+    {
+        if (boardInit && cameraToInit)
+        {
+            GameObject c = GameObject.Find("Colony(Clone)");
+            if(c != null)
+            {
+                colonyCamera.colony = c.GetComponent<Transform>();
+                colonyCamera.colonyRadius = (float) AntConlonySimulation.GetGapAroundHill();
+            }
+            cameraToInit = false;
+
+        }
+        
     }
 
     private IEnumerator InitializeUIComponents()
@@ -110,6 +140,8 @@ public class SimulationController : MonoBehaviour
         {
             menu.EnableButton();
         }
+
+        InitCamera();
     }
 
     private void UpdateSimulationSpeed(float sliderValue, float currentTime)
@@ -186,5 +218,4 @@ public class SimulationController : MonoBehaviour
     {
         AntColonyPersistenceManager.SaveColonyInfo(antSimulation);
     }
-
 }
