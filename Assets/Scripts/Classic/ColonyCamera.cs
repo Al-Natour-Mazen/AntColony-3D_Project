@@ -12,6 +12,7 @@ public class ColonyCamera : MonoBehaviour
 
     public Camera mainCamera;
     public Camera colonyCamera;
+    public Camera FPSCamera;
 
     void Update()
     {
@@ -37,21 +38,34 @@ public class ColonyCamera : MonoBehaviour
 
     public void changeToMainCamera()
     {
-        if(mainCamera != null && colonyCamera != null)
+        if(mainCamera != null && colonyCamera != null && FPSCamera != null)
         {
             mainCamera.enabled = true;
             colonyCamera.enabled = false;
+            FPSCamera.enabled = false;
             joystick.SetActive(false);
         }
     }
 
     public void changeToColonyCamera()
     {
-        if(mainCamera != null && colonyCamera != null)
+        if(mainCamera != null && colonyCamera != null && FPSCamera != null)
         {
             mainCamera.enabled = false;
             colonyCamera.enabled = true;
+            FPSCamera.enabled = false;
             joystick.SetActive(true);
+        }
+    }
+
+    public void changeToFPSCamera()
+    {
+        if(mainCamera != null && colonyCamera != null && FPSCamera != null)
+        {
+            mainCamera.enabled = false;
+            colonyCamera.enabled = false;
+            FPSCamera.enabled = true;
+            joystick.SetActive(false);
         }
     }
 
