@@ -33,7 +33,7 @@ public class Board : MonoBehaviour
         ClearGameObjects(colonyHolder);
         int x, y;
         (x, y) = antSimulation.GetAntColonyCoordinate();
-        InstantiateGameObject(antHill, x, 0, y, colonyHolder);
+        InstantiateGameObject(antHill, x, 1.5F, y, colonyHolder);
     }
 
     public void GenerateWalls(AntConlonySimulation antSimulation)
