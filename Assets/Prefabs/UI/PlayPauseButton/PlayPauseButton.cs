@@ -54,4 +54,31 @@ public class PlayPauseButton : MonoBehaviour
     {
         return isPlaying;
     }
+
+    /// <summary>
+    /// Changes the state of a button when called.
+    /// </summary>
+    public void ChangeButtonPlayingState()
+    {
+        OnButtonClick();
+    }
+
+    /// <summary>
+    /// Enables or disables the button and changes the button image color to grey when disabled.
+    /// <param name="state">The state of the button. True to enable the button, false to disable it.</param>
+    /// </summary>
+    public void EnableDiableButton(bool state)
+    {
+        btn.enabled = state;
+        if (!btn.enabled)
+        {
+            // Change the color of the image to #5C5050 with alpha 112 when the button is not enabled
+            image.color = new Color32(92, 80, 80, 112);
+        }
+        else
+        {
+            // Change the color of the image back to normal when the button is enabled
+            image.color = Color.white;
+        }
+    }
 }
