@@ -41,6 +41,7 @@ public class SimulationController : MonoBehaviour
     private AntConlonySimulation antSimulation;
     private float simulationSpeed = 1.0f;
     private float elapsedTime = 0f;
+    private int MaximalPossibleSeedInColony;
 
     void Start()
     {
@@ -52,7 +53,7 @@ public class SimulationController : MonoBehaviour
         elapsedTime = 0F;
         antSimulation = new AntConlonySimulation(width, height, maxSeedQuantityPerBlock, wallCountDensity, antCount, seedCountDensity);
         InitializeBoard();
-        StartCoroutine(InitializeUIComponents());
+        StartCoroutine(InitializeUIComponents()); 
     }
 
     private void InitializeBoard()
@@ -70,12 +71,21 @@ public class SimulationController : MonoBehaviour
         // Wait for the end of the frame. This ensures that all other Start and Update methods have been called for this frame.
         // This is useful when we want to make sure that all other objects and their scripts have been initialized before using them.
         yield return new WaitForEndOfFrame();
-       
-        // Now that we are sure everything is initialized, we can set the max value of the progress bar.
-        // We use the total number of seeds outside the colony as the max value.
-        progressBar.SetMaxValue(antSimulation.GetTotalSeedOutColony());
+
+        // Now that we are sure everything is initialized, we can set our components.
+        playPauseButton.EnableDiableButton(true);
+        MaximalPossibleSeedInColony = antSimulation.GetTotalSeedOutColony();
+        progressBar.SetMaxValue(MaximalPossibleSeedInColony);
         UpdateUI();
+        UpdateInputFields();
         InitCamera();
+    }
+
+    private void InitCamera()
+    {
+        initColonyCamera();
+        initFPSCamera();
+        initMainCamera();
     }
 
     private void UpdateUI()
@@ -85,7 +95,10 @@ public class SimulationController : MonoBehaviour
         dynamicTextViewAnt.DynamicText = antSimulation.GetAntsInColony().Count.ToString();
         dynamicTextViewSeedInColony.DynamicText = antSimulation.GetTotalSeedInColony().ToString();
         dynamicTextViewSeedOutColony.DynamicText = antSimulation.GetTotalSeedOutColony().ToString();
-
+    }
+       
+    private void UpdateInputFields()
+    {
         inputfieldAnt.SetInputFieldValue(antCount.ToString());
         inputfieldWallDensity.SetInputFieldValue(wallCountDensity.ToString());
         inputfieldSeedDensity.SetInputFieldValue(seedCountDensity.ToString());
@@ -94,12 +107,6 @@ public class SimulationController : MonoBehaviour
         inputfieldHeightSimulation.SetInputFieldValue(height.ToString());
     }
 
-    private void InitCamera()
-    {
-        initColonyCamera();
-        initFPSCamera();
-        initMainCamera();
-    }
 
     void Update()
     {
@@ -117,11 +124,20 @@ public class SimulationController : MonoBehaviour
 
             elapsedTime += Time.deltaTime * sliderValue;
             dynamicTextViewTime.DynamicText = FormatTime(elapsedTime);
+            // We chack if the Simulation is End
+            if (antSimulation.GetTotalSeedOutColony() == 0 && antSimulation.GetTotalSeedInColony() == MaximalPossibleSeedInColony)
+            {
+                SaveSimulation();
+                playPauseButton.ChangeButtonPlayingState();
+                playPauseButton.EnableDiableButton(false);
+            }
         }
         else
         {
             menu.EnableButton();
         }
+
+      
     }
 
     private void UpdateSimulationSpeed(float sliderValue, float currentTime)
