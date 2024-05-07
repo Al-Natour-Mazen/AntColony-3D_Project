@@ -10,9 +10,14 @@ public class FPSCamera : MonoBehaviour
     public Transform player;
     public Camera FPScamera;
     public float mouseSensitivity = 2f;
-    float cameraVerticalRotation = 0f;
+
+    public float minX = 0f;
+    public float maxX = 10f;
+    public float minZ = 0f;
+    public float maxZ = 10f;
 
     private bool cameraMovement = false;
+    private float cameraVerticalRotation = 90f;
 
     // Update is called once per frame
     void Update()
@@ -23,29 +28,43 @@ public class FPSCamera : MonoBehaviour
 
     void cameraMouvement()
     {
+        Vector3 moveDirection = Vector3.zero;
+
         // Déplacement vers l'avant avec la touche W -> Z
         if (Input.GetKey(KeyCode.W))
         {
-            player.Translate(Vector3.forward * vitesseDeplacement * Time.deltaTime);
+            moveDirection += Vector3.forward;
         }
 
         // Déplacement vers la gauche avec la touche Q -> A
         if (Input.GetKey(KeyCode.A))
         {
-            player.Translate(Vector3.left * vitesseDeplacement * Time.deltaTime);
+            moveDirection += Vector3.left;
         }
 
         // Déplacement vers l'arrière avec la touche S
         if (Input.GetKey(KeyCode.S))
         {
-            player.Translate(Vector3.back * vitesseDeplacement * Time.deltaTime);
+            moveDirection += Vector3.back;
         }
 
         // Déplacement vers la droite avec la touche D
         if (Input.GetKey(KeyCode.D))
         {
-            player.Translate(Vector3.right * vitesseDeplacement * Time.deltaTime);
+            moveDirection += Vector3.right;
         }
+
+        // Normalise le vecteur de déplacement pour éviter les mouvements diagonaux plus rapides
+        moveDirection = moveDirection.normalized;
+
+        // Appliquer le déplacement
+        player.Translate(moveDirection * vitesseDeplacement * Time.deltaTime);
+
+        // Limiter la caméra dans le périmètre rectangulaire
+        Vector3 clampedPosition = player.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
+        clampedPosition.z = Mathf.Clamp(clampedPosition.z, minZ, maxZ);
+        player.position = clampedPosition;
 
         if(cameraMovement)
         {

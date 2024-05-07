@@ -31,15 +31,16 @@ public class SimulationController : MonoBehaviour
     public TextViewInputField inputfieldSeedPerBlock;
     public TextViewInputField inputfieldWidthSimulation;
     public TextViewInputField inputfieldHeightSimulation;
+
     public Menu menu;
     public ColonyCamera colonyCamera;
+    public FPSCamera FPSCamera;
+    public Transform mainCamera;
 
     private float lastTime;
     private AntConlonySimulation antSimulation;
     private float simulationSpeed = 1.0f;
     private float elapsedTime = 0f;
-    private bool boardInit = false;
-    private bool cameraToInit = true;
 
     void Start()
     {
@@ -52,16 +53,6 @@ public class SimulationController : MonoBehaviour
         antSimulation = new AntConlonySimulation(width, height, maxSeedQuantityPerBlock, wallCountDensity, antCount, seedCountDensity);
         InitializeBoard();
         StartCoroutine(InitializeUIComponents());
-
-        if(colonyCamera != null)
-        {
-            colonyCamera.changeToMainCamera();
-            int x,z;
-            (x,z) = antSimulation.GetAntColonyCoordinate();
-            Vector3 coords = new Vector3(x + 20, 15, z);
-            colonyCamera.transform.localPosition = coords; 
-        }
-        
     }
 
     private void InitializeBoard()
@@ -72,23 +63,6 @@ public class SimulationController : MonoBehaviour
         board.GenerateWalls(antSimulation);
         board.GenerateAnts(antSimulation);
         board.GenerateSeeds(antSimulation);
-        boardInit = true;
-    }
-
-    private void InitCamera()
-    {
-        if (boardInit && cameraToInit)
-        {
-            GameObject c = GameObject.Find("Colony(Clone)");
-            if(c != null)
-            {
-                colonyCamera.colony = c.GetComponent<Transform>();
-                colonyCamera.colonyRadius = (float) AntConlonySimulation.GetGapAroundHill();
-            }
-            cameraToInit = false;
-
-        }
-        
     }
 
     private IEnumerator InitializeUIComponents()
@@ -101,6 +75,7 @@ public class SimulationController : MonoBehaviour
         // We use the total number of seeds outside the colony as the max value.
         progressBar.SetMaxValue(antSimulation.GetTotalSeedOutColony());
         UpdateUI();
+        InitCamera();
     }
 
     private void UpdateUI()
@@ -117,6 +92,13 @@ public class SimulationController : MonoBehaviour
         inputfieldSeedPerBlock.SetInputFieldValue(maxSeedQuantityPerBlock.ToString());
         inputfieldWidthSimulation.SetInputFieldValue(width.ToString());
         inputfieldHeightSimulation.SetInputFieldValue(height.ToString());
+    }
+
+    private void InitCamera()
+    {
+        initColonyCamera();
+        initFPSCamera();
+        initMainCamera();
     }
 
     void Update()
@@ -140,8 +122,6 @@ public class SimulationController : MonoBehaviour
         {
             menu.EnableButton();
         }
-
-        InitCamera();
     }
 
     private void UpdateSimulationSpeed(float sliderValue, float currentTime)
@@ -217,5 +197,45 @@ public class SimulationController : MonoBehaviour
     public void SaveSimulation()
     {
         AntColonyPersistenceManager.SaveColonyInfo(antSimulation);
+    }
+
+    private void initFPSCamera()
+    {
+        if(FPSCamera != null)
+        {
+            int offset =  1 + 10;
+            FPSCamera.maxX = antSimulation.GetWidthSimulation() + offset;
+            FPSCamera.maxZ = antSimulation.GetHeighSimulation() + offset;
+        } 
+    }
+
+    private void initColonyCamera()
+    {
+        if(colonyCamera != null)
+        {
+            colonyCamera.changeToMainCamera();
+            int x,z;
+            (x,z) = antSimulation.GetAntColonyCoordinate();
+            Vector3 coords = new Vector3(x + 20, 15, z);
+            colonyCamera.transform.localPosition = coords; 
+
+            GameObject c = GameObject.Find("Colony(Clone)");
+            if(c != null)
+            {
+                colonyCamera.colony = c.GetComponent<Transform>();
+                colonyCamera.colonyRadius = (float) AntConlonySimulation.GetGapAroundHill();
+            }
+        }
+    }
+    private void initMainCamera()
+    {
+        if(mainCamera != null)
+        {
+            float x = antSimulation.GetWidthSimulation() + 1;
+            float z = antSimulation.GetHeighSimulation() + 1;
+            float y = (x + z) / 2;
+            Vector3 newPos = new Vector3(x / 2 + x / 8, y, z / 2);
+            mainCamera.localPosition = newPos;
+        }
     }
 }
