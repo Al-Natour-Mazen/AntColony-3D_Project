@@ -179,6 +179,18 @@ public class SimulationController : MonoBehaviour
         if (TryParseInt(inputfieldWidthSimulation.GetInputFieldValue(), out int width) &&
             TryParseInt(inputfieldHeightSimulation.GetInputFieldValue(), out int height))
         {
+            int GapAroundHill = AntConlonySimulation.GetGapAroundHill();
+            int minDim = GapAroundHill * 2;
+            if (width < minDim)
+            {
+                width = minDim;
+                inputfieldWidthSimulation.SetInputFieldValue("" + minDim);
+            }
+            if (height < minDim)
+            {
+                height = minDim;
+                inputfieldHeightSimulation.SetInputFieldValue("" + minDim);
+            }
             this.width = width;
             this.height = height;
             InitializeSimulation();
