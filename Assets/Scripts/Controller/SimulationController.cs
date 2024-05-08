@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static AntColonyPersistenceManager;
+using System;
 
 public class SimulationController : MonoBehaviour
 {
@@ -261,7 +262,7 @@ public class SimulationController : MonoBehaviour
         {
             float x = antSimulation.GetWidthSimulation() + 1;
             float z = antSimulation.GetHeighSimulation() + 1;
-            float y = (x + z) / 2;
+            float y = (Math.Max(x, z) * 2) / 2;
             Vector3 newPos = new Vector3(x / 2 + x / 8, y, z / 2);
             mainCamera.localPosition = newPos;
         }

@@ -3,64 +3,74 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Controls the first-person camera movement and input handling.
+/// </summary>
 public class FPSCamera : MonoBehaviour
 {
-    public float vitesseDeplacement = 30f;
-    public float vitesseRotation = 80f;
-    public Transform player;
-    public Camera FPScamera;
-    public float mouseSensitivity = 2f;
+    [Header("Movement Settings")]
+    public float vitesseDeplacement = 30f; // Movement speed
+    public float vitesseRotation = 80f; // Rotation speed
+    public Transform player; // Player's transform
+    public Camera FPScamera; // First-person camera
+    public float mouseSensitivity = 2f; // Mouse sensitivity
 
-    public float minX = 0f;
-    public float maxX = 10f;
-    public float minZ = 0f;
-    public float maxZ = 10f;
+    [Header("Boundary Settings")]
+    public float minX = 0f; // Minimum X boundary
+    public float maxX = 10f; // Maximum X boundary
+    public float minZ = 0f; // Minimum Z boundary
+    public float maxZ = 10f; // Maximum Z boundary
 
-    private bool cameraMovement = false;
-    private float cameraVerticalRotation = 90f;
+    private bool cameraMovement = false; // Flag indicating if camera movement is enabled
+    private float cameraVerticalRotation = 90f; // Vertical rotation of the camera
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame.
+    /// </summary>
     void Update()
     {
         cameraMouvement();
         cursor();
     }
 
+    /// <summary>
+    /// Handles camera movement based on player input.
+    /// </summary>
     void cameraMouvement()
     {
         Vector3 moveDirection = Vector3.zero;
 
-        // Déplacement vers l'avant avec la touche W -> Z
+        // Move forward with W key
         if (Input.GetKey(KeyCode.W))
         {
             moveDirection += Vector3.forward;
         }
 
-        // Déplacement vers la gauche avec la touche Q -> A
+        // Move left with A key
         if (Input.GetKey(KeyCode.A))
         {
             moveDirection += Vector3.left;
         }
 
-        // Déplacement vers l'arrière avec la touche S
+        // Move backward with S key
         if (Input.GetKey(KeyCode.S))
         {
             moveDirection += Vector3.back;
         }
 
-        // Déplacement vers la droite avec la touche D
+        // Move right with D key
         if (Input.GetKey(KeyCode.D))
         {
             moveDirection += Vector3.right;
         }
 
-        // Normalise le vecteur de déplacement pour éviter les mouvements diagonaux plus rapides
+        // Normalize the movement vector to avoid faster diagonal movements
         moveDirection = moveDirection.normalized;
 
-        // Appliquer le déplacement
+        // Apply movement
         player.Translate(moveDirection * vitesseDeplacement * Time.deltaTime);
 
-        // Limiter la caméra dans le périmètre rectangulaire
+        // Clamp camera within the rectangular perimeter
         Vector3 clampedPosition = player.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
         clampedPosition.z = Mathf.Clamp(clampedPosition.z, minZ, maxZ);
@@ -79,6 +89,9 @@ public class FPSCamera : MonoBehaviour
         } 
     }
 
+    /// <summary>
+    /// Handles cursor visibility and locking based on camera state.
+    /// </summary>
     void cursor()
     {
         if (FPScamera.enabled)
