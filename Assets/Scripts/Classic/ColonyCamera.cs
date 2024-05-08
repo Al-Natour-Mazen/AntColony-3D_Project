@@ -2,40 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls different camera views and camera movement around a colony.
+/// </summary>
 public class ColonyCamera : MonoBehaviour
 {
-    public SimulationController simulation;
-    public GameObject[] objectToMask;
-    public Transform colony;
-    public float colonyRadius;
-    public GameObject joystick;
+    [Header("Simulation Settings")]
+    public SimulationController simulation; // Reference to the simulation controller
+    public GameObject[] objectToMask; // Objects to mask when colony camera is active
+    public Transform colony; // Reference to the colony's transform
+    public float colonyRadius; // Radius of the colony
+    public GameObject joystick; // Reference to the joystick GameObject
 
-    public Camera mainCamera;
-    public Camera colonyCamera;
-    public Camera FPSCamera;
+    [Header("Camera References")]
+    public Camera mainCamera; // Reference to the main camera
+    public Camera colonyCamera; // Reference to the colony camera
+    public Camera FPSCamera; // Reference to the first-person shooter (FPS) camera
 
+    /// <summary>
+    /// Update is called once per frame.
+    /// </summary>
     void Update()
     {
        if (colony != null)
         {
-            // Calculer la distance entre la caméra et la colonie
+            // Calculate the distance between the camera and the colony
             float distance = Vector3.Distance(transform.position, colony.position);
 
-            // Limiter la distance à la colonie
+            // Limit the distance to the colony
             if (distance > colonyRadius)
             {
-                // Obtenir la direction de la colonie vers la caméra
+                // Get the direction from the colony to the camera
                 Vector3 directionToColony = (colony.position - transform.position).normalized;
 
-                // Déplacer la caméra vers la colonie jusqu'à la limite de la distance
+                // Move the camera towards the colony up to the distance limit
                 transform.position = colony.position - directionToColony * (colonyRadius + 10);
             }
 
-
+            // Make the camera look at the colony
             transform.LookAt(colony);
         }
     }
 
+    /// <summary>
+    /// Switches to the main camera view.
+    /// </summary>
     public void changeToMainCamera()
     {
         if(mainCamera != null && colonyCamera != null && FPSCamera != null)
@@ -47,6 +58,9 @@ public class ColonyCamera : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Switches to the colony camera view.
+    /// </summary>
     public void changeToColonyCamera()
     {
         if(mainCamera != null && colonyCamera != null && FPSCamera != null)
@@ -58,6 +72,9 @@ public class ColonyCamera : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Switches to the first-person camera view.
+    /// </summary>
     public void changeToFPSCamera()
     {
         if(mainCamera != null && colonyCamera != null && FPSCamera != null)
@@ -68,5 +85,4 @@ public class ColonyCamera : MonoBehaviour
             joystick.SetActive(false);
         }
     }
-
 }
